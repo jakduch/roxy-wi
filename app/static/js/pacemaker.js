@@ -73,7 +73,7 @@ jQuery(() => {
     }
     function navigateSection() {
         const section = window.location.hash.slice(1);
-        const targets = {overview: 'overview', resources: 'resources', configuration: 'configuration',
+        const targets = {overview: 'overview', resources: 'resources', wizard: 'wizard', configuration: 'configuration',
             quorum: 'quorum', logs: 'logs', monitoring: 'monitoring', history: 'history'};
         if (targets[section]) window.location.replace(pageURL(targets[section]));
     }
@@ -133,6 +133,7 @@ jQuery(() => {
         byId('change-label').textContent = 'Editor changed. Save a new draft, then validate it before applying.';
         byId('simulation').textContent = '';
     }
+    const guidedWizard = operator && window.RoxywiPacemakerGuided ? window.RoxywiPacemakerGuided({api, path, showChange}) : null;
     async function loadClusters(selectId) {
         const request = ++clusterRequest;
         setDisabled('cluster', true);
@@ -158,7 +159,7 @@ jQuery(() => {
             if (selectId || requestedCluster) byId('cluster').value = selectId || requestedCluster;
             refreshSelect(byId('cluster'));
             selected = clusters.find(item => String(item.id) === byId('cluster').value) || null;
-            resetDraft();
+            resetDraft(); guidedWizard?.reset();
             byId('dashboard').hidden = !selected;
             byId('empty').hidden = !!selected || view === 'setup';
             byId('updated').textContent = '—';

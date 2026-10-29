@@ -30,6 +30,7 @@ proxies and HA clusters across multiple servers and environments.
 | Review changes before touching production | Compare configuration differences, validate candidates, require approval and keep an audit trail with **Change Center**. |
 | Coordinate a deployment across HA nodes | Choose canaries and batches, check each target, pause between stages and recover or roll back failed changes. |
 | Choose and operate your HA technology | Use Keepalived/VRRP or [Corosync/Pacemaker](#corosync-and-pacemaker) with resource management, quorum witnesses and fencing. |
+| Configure advanced Pacemaker resources | Use the [graphical configuration wizard](docs/pacemaker-guided-editor.md) for fencing levels, rules, groups/clones, operations and Docker/Podman bundles, then review native validation and simulation. |
 | Bring existing infrastructure into one interface | Connect servers over SSH; manage HAProxy, NGINX, Apache and Keepalived configurations and service actions. |
 | Adopt an existing Linux HA cluster | Discover Corosync/Pacemaker nodes, verify their identities and configuration, and register the cluster while preserving its running configuration. |
 | Choose a managed component runtime | Install HAProxy, NGINX, Apache or a standalone quorum witness with Native/Docker/Podman choices, or [adopt existing containers](docs/managed-containers.md) with an explicit engine and owner. Podman Debian/EL VM qualification is pending. |
