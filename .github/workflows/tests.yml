@@ -22,7 +22,7 @@ jobs:
       - name: Install test dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y podman openssh-server openssl fail2ban haproxy nginx libnginx-mod-http-modsecurity rsyslog logrotate gnupg
+          sudo apt-get install -y podman openssh-server openssl fail2ban haproxy nginx libnginx-mod-http-modsecurity rsyslog logrotate gnupg pacemaker-cli-utils
           # Ubuntu's rsyslog AppArmor profile permits /var/log/**, not /tmp/**.
           sudo install -d -m 0700 -o "$(id -u)" -g "$(id -g)" /var/log/roxywi-tests
           python -m pip install -r requirements.txt -r requirements-dev.txt
@@ -43,6 +43,8 @@ jobs:
           python -m pytest tests/product/browser -q --no-cov
           --tracing retain-on-failure --screenshot only-on-failure
           --output test-results/browser --junitxml=test-results/browser.xml
+      - name: Verify offline HA maintenance scheduling
+        run: python -m pytest tests/integration/test_ha_maintenance_simulation_linux.py -q --no-cov
       - name: Upload browser failure evidence
         if: failure()
         uses: actions/upload-artifact@v4
