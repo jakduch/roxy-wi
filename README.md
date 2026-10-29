@@ -30,11 +30,16 @@ proxies and HA clusters across multiple servers and environments.
 | Review changes before touching production | Compare configuration differences, validate candidates, require approval and keep an audit trail with **Change Center**. |
 | Coordinate a deployment across HA nodes | Choose canaries and batches, check each target, pause between stages and recover or roll back failed changes. |
 | Choose and operate your HA technology | Use Keepalived/VRRP or [Corosync/Pacemaker](#corosync-and-pacemaker) with resource management, quorum witnesses and fencing. |
+| Review HA readiness | [Audit Keepalived and Pacemaker](docs/ha-readiness.md) with per-node quorum/witness evidence, fencing configuration, declared failure domains and separately labelled test records. |
+| Hand a node over for maintenance | [Review quorum and placement, obtain approval, verify drain and return](docs/ha-maintenance.md) through the HA maintenance wizard and Change Center. |
 | Bring existing infrastructure into one interface | Connect servers over SSH; manage HAProxy, NGINX, Apache and Keepalived configurations and service actions. |
 | Adopt an existing Linux HA cluster | Discover Corosync/Pacemaker nodes, verify their identities and configuration, and register the cluster while preserving its running configuration. |
 | Choose a managed component runtime | Install HAProxy, NGINX, Apache or a standalone quorum witness with Native/Docker/Podman choices, or [adopt existing containers](docs/managed-containers.md) with an explicit engine and owner. Podman Debian/EL VM qualification is pending. |
 | Give the right people access | Organize servers into groups, assign roles and service permissions, and integrate OIDC or LDAP authentication. |
 | Keep service health visible | Inspect backends and logs; add monitoring, traffic metrics and notifications as your needs grow. |
+| Diagnose a published request | [Inspect DNS, VIP/listener, TCP, TLS/SNI and candidate backends](docs/proxy-diagnostics.md) with bounded, configuration-derived probes and saved evidence. |
+| Map published services | [Link domains, listeners, proxies and backend candidates](docs/published-services.md), distinguish discovered and confirmed relationships, and inspect potential node impact. |
+| Verify served TLS | [Compare certificates presented by proxy nodes](docs/served-tls.md), validate trust/SNI and expiry, and check provider deployment after renewal. |
 | Manage certificates and configuration history | Issue Let's Encrypt certificates or synchronize CertWarden certificates through [provider connectors](docs/certificate-sources.md), including Pacemaker member targets; retain configuration versions and configure backup destinations. |
 
 Some capabilities require a subscription. Change Center requires **Premium**;

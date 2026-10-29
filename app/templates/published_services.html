@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Published services{% endblock %}
+{% block h2 %}Published services{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/table-6.3.9.css') }}">
+<main class="service-overview-page" id="published-services" data-api="{{ url_for('insights.service_map_view') }}" data-choices="{{ url_for('insights.choices') }}" data-assessments="{{ url_for('insights.assessment',assessment_id=0) }}" data-write="{{ '1' if g.user_params['role']|int <=3 else '0' }}">
+    <p>Domain → VIP/listener → proxy → candidate backends. Configuration discovery and operator confirmation are separate evidence. HA dependencies show possible impact, not a guaranteed outage.</p>
+    <form id="map-form" class="rw-panel"><div class="change-advanced-grid">
+        <div class="rw-form-field"><label for="map-service">Proxy service</label><select id="map-service" required></select></div>
+        <div class="rw-form-field"><label for="map-server">Registered proxy</label><select id="map-server" required></select></div>
+        <div class="rw-form-field"><label for="map-impact">Potential impact of node maintenance</label><select id="map-impact"><option value="">All discovered services</option></select></div>
+    </div><div class="rw-table-toolbar">
+        {% if g.user_params['role']|int <=3 %}<button class="rw-button rw-button-primary" id="map-discover" type="submit">Discover proxy configuration</button>{% endif %}
+        <button class="rw-button rw-button-secondary" id="map-refresh" type="button">Refresh map</button>
+    </div></form>
+    <p id="map-message" class="rw-form-help" role="status" aria-live="polite"></p>
+    <section class="rw-panel"><div class="rw-table-shell"><table class="overview dataTable"><thead><tr class="overviewHead"><th>Domain / evidence</th><th>VIP / listener</th><th>Proxy</th><th>Backend candidates</th><th>HA / certificate / impact</th><th>Actions</th></tr></thead><tbody id="map-rows"></tbody></table></div></section>
+    <dialog id="map-confirm-dialog" class="rw-panel"><form id="map-confirm-form"><h3>Confirm publication relationship</h3>
+        <p>This records your confirmation for the selected configuration snapshot. It does not verify DNS, certificate delivery, traffic or failover.</p>
+        <div class="rw-form-field"><label for="map-domain">Domain</label><input class="form-control" id="map-domain" maxlength="253" required></div>
+        <div class="rw-form-field"><label for="map-note">Evidence / reason</label><textarea class="form-control" id="map-note" minlength="5" maxlength="1000" required></textarea></div>
+        <p id="map-confirm-message" role="status"></p><div class="rw-table-toolbar"><button class="rw-button rw-button-primary" type="submit">Record confirmation</button><button class="rw-button rw-button-secondary" id="map-cancel" type="button">Cancel</button></div>
+    </form></dialog>
+</main>
+<script src="{{ url_for('static',filename='js/published-services.js') }}" defer></script>
+{% endblock %}

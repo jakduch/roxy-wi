@@ -4,6 +4,27 @@ These notes cover **Roxy-WI 9.1 and later**.
 
 ## Unreleased
 
+- Add domain-based served-TLS monitors with discovered proxy targets, SNI/system
+  or private-CA validation, peer/provider fingerprints, expiry, durable history,
+  recurring and post-provider-renewal checks, and publication-map evidence.
+
+- Add a group-scoped publication map with durable proxy configuration discovery,
+  distinct operator confirmations, registered HA/backend dependency impact,
+  snapshot timestamps and identity drift checks.
+
+- Add durable request-path diagnostics for HAProxy/NGINX/Apache with discovered
+  routing candidates, context-aware includes, pinned DNS/address probes,
+  TCP/TLS-SNI/HTTP evidence, candidate-backend checks and group-scoped history.
+
+- Add reviewed HA node maintenance with Change Center approval, offline Pacemaker
+  placement/quorum checks, Keepalived VIP handover, observed drain/return,
+  reservations, explicit recovery and configuration-bound maintenance evidence.
+
+- Add a shared Keepalived/Pacemaker readiness page with durable read-only audits,
+  per-member witness TLS/votes, configuration hashes, static fencing coverage,
+  declared failure domains and configuration-bound external test attestations.
+  Distinguish observations/configuration from functional failover verification.
+
 - Add a shared Docker/Podman connector for managed component installation,
   explicit rootful/rootless adoption, namespace-aware statistics/Runtime API,
   configuration transactions, certificate mounts and lifecycle controls.

@@ -70,6 +70,9 @@ def get_action_command(service: str, action: str, server_id: int) -> str:
     """
     if action not in ('start', 'stop', 'reload', 'restart'):
         raise ValueError('Unsupported service action')
+    if service=='keepalived':
+        from app.modules.service.ha_maintenance import assert_server_idle
+        assert_server_idle(server_id)
     if service == 'waf' and action == 'reload':
         raise ValueError('The HAProxy WAF agent requires restart to apply rules')
     if action in ('start', 'stop', 'restart'):
