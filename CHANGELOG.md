@@ -4,6 +4,9 @@ These notes cover **Roxy-WI 9.1 and later**.
 
 ## Unreleased
 
+- Add revocable personal API credentials with explicit scopes, fixed groups,
+  live owner authorization, one-time display and local sensitive-action checks.
+
 - Add a shared Docker/Podman connector for managed component installation,
   explicit rootful/rootless adoption, namespace-aware statistics/Runtime API,
   configuration transactions, certificate mounts and lifecycle controls.
