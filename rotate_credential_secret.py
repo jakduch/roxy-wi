@@ -7,6 +7,8 @@ from cryptography.fernet import Fernet, InvalidToken
 
 from app.modules.db.db_model import Cred, InstallationTasks, LetsEncryptState, LetsEncryptDnsProfile, OidcProvider, PacemakerChange, CertificateSource
 
+from app.modules.db.db_model import ConnectionProfile, ConnectionProfileRevision
+
 
 SECRET_FIELDS = ('password', 'passphrase', 'private_key')
 
@@ -98,10 +100,17 @@ def rotate_credentials() -> int:
             ).where(InstallationTasks.id == task.id).execute()
             rotated_credentials += 1
 
-        for state in chain(LetsEncryptState.select(), LetsEncryptDnsProfile.select(), CertificateSource.select()):
+        for state in chain(LetsEncryptState.select(), LetsEncryptDnsProfile.select(), CertificateSource.select(),
+                           ConnectionProfile.select(), ConnectionProfileRevision.select()):
             updates = {}
-            fields = (('configuration',) if isinstance(state, CertificateSource) else
-                      ('credentials', 'pending_config') if isinstance(state, LetsEncryptState) else ('credentials',))
+            if isinstance(state, LetsEncryptState):
+                fields = ('credentials', 'pending_config')
+            elif isinstance(state, CertificateSource):
+                fields = ('configuration',)
+            elif isinstance(state, (ConnectionProfile, ConnectionProfileRevision)):
+                fields = ('credentials_encrypted',)
+            else:
+                fields = ('credentials',)
             for field in fields:
                 value = getattr(state, field)
                 if not value:
