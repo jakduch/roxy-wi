@@ -4,6 +4,11 @@ These notes cover **Roxy-WI 9.1 and later**.
 
 ## Unreleased
 
+- Add local WebAuthn passkeys with required user verification, multiple named
+  credentials, passwordless and second-factor login, policy, single-use recovery
+  codes and audited console recovery. Configure the RP ID and exact HTTPS origins
+  explicitly; local security is independent of OIDC and the subscription.
+
 - Add a shared Docker/Podman connector for managed component installation,
   explicit rootful/rootless adoption, namespace-aware statistics/Runtime API,
   configuration transactions, certificate mounts and lifecycle controls.
