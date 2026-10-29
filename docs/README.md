@@ -5,6 +5,7 @@ and support matrix whenever a workflow, endpoint, deployment requirement or
 compatibility boundary changes. Website documentation is maintained separately;
 adding a Markdown file here does not publish it to roxy-wi.org.
 
+- [Local authenticator MFA, policy, API login and account recovery](local-authentication.md)
 - [Managed Docker/Podman components, adoption and witness lifecycle](managed-containers.md)
 - [External certificate providers and CertWarden](certificate-sources.md)
 - [Roxy-WI controller deployment with Podman Quadlet](podman-controller.md)

@@ -4,6 +4,11 @@ These notes cover **Roxy-WI 9.1 and later**.
 
 ## Unreleased
 
+- Add local authenticator MFA with confirmed encrypted TOTP setup, atomic replay
+  prevention, one-use recovery codes, password-to-MFA challenges for web/API login,
+  optional administrator/all-account policy with enrollment grace, fresh action
+  verification and audited console recovery. Local MFA has no subscription or OIDC dependency.
+
 - Add a shared Docker/Podman connector for managed component installation,
   explicit rootful/rootless adoption, namespace-aware statistics/Runtime API,
   configuration transactions, certificate mounts and lifecycle controls.
